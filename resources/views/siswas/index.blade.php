@@ -8,9 +8,12 @@
             </div>
             <div class="pull-right">
                 <a class="btn btn-success" href="{{ route('siswas.create') }}"> Create New Siswa</a>
-            </div>
-            <div class="pull-right">
-                <a class="btn btn-success" target="_blank" href="/siswas/downloadPDF"> Cetak PDF</a>
+               <br>
+               <br>
+            <form action="{{route('siswas.pdf')}}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-sm btn-success shadow">Print</button>
+                </form>
             </div>
         </div>
     </div>
@@ -36,7 +39,6 @@
         </tr>
         @foreach ($siswas as $siswa)
         <tr>
-            <td>{{ ++$i }}</td>
             <td>{{ $siswa->nis }}</td>
             <td>{{ $siswa->nama }}</td>
             <td>{{ $siswa->jk }}</td>

@@ -15,7 +15,7 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        $siswas = Siswa::all();
+        $siswa = Siswa::all();
         $siswas = Siswa::latest()->paginate(5);
   
         return view('siswas.index',compact('siswas'))
@@ -123,12 +123,13 @@ class SiswaController extends Controller
                         ->with('success','Siswa deleted successfully');
 
     }
-    public function downloadPDF()
-    {
-        $siswas = Siswa::all();
 
-        $pdf = PDF::loadview('siswas.pdf',['siswa'=>$siswas]);
-        return $pdf->download('laporan-data-ppdb');
+    public function pdf()
+    {
+        $siswa = Siswa::all();
+
+        $cetak = PDF::loadview('siswas.pdf', compact('siswa'));
+        return $cetak->stream();
     }
     
 }

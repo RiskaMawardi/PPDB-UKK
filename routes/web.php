@@ -17,8 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::resource('siswas','SiswaController');
-Route::get('/siswas/downloadPDF', [App\Http\Controllers\SiswaController::class, 'downloadPDF']);
-
+Route::post('/siswas/pdf', 'SiswaController@pdf')->name('siswas.pdf');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
